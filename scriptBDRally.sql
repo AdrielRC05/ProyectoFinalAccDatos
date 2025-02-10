@@ -4,46 +4,47 @@ USE rallys;
 
 -- Tabla campeonato
 CREATE TABLE campeonato (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     localizacion VARCHAR(255) NOT NULL
 );
 
 -- Tabla rally
 CREATE TABLE rally (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     localizacion VARCHAR(255) NOT NULL,
     fecha_celebracion DATE NOT NULL,
-    listado_participantes VARCHAR(255),
-    campeonato_id BIGINT,
+    campeonato_id INT,
     FOREIGN KEY (campeonato_id) REFERENCES campeonato(id)
 );
 
 -- Tabla piloto
 CREATE TABLE piloto (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     edad INT NOT NULL,
     nacionalidad VARCHAR(255) NOT NULL,
     coche VARCHAR(255) NOT NULL,
-    titulos INT NOT NULL
+    titulos INT NOT NULL default 0
 );
 
+-- Tabla copiloto
 CREATE TABLE copiloto (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
     edad INT NOT NULL,
     nacionalidad VARCHAR(255) NOT NULL,
     coche VARCHAR(255) NOT NULL,
-    titulos INT NOT NULL
+    titulos INT NOT NULL default 0
 );
 
+-- Tabla participacion
 CREATE TABLE participacion (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    rally_id BIGINT,
-    piloto_id BIGINT,
-    copiloto_id BIGINT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rally_id INT,
+    piloto_id INT,
+    copiloto_id INT,
     posicion_final INT CHECK (posicion_final > 0),
     tiempo_total TIME CHECK (tiempo_total > '00:00:00'),
     FOREIGN KEY (rally_id) REFERENCES rally(id),
@@ -51,10 +52,11 @@ CREATE TABLE participacion (
     FOREIGN KEY (copiloto_id) REFERENCES copiloto(id)
 );
 
+-- Tabla clasificacionCampeonato
 CREATE TABLE clasificacionCampeonato (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    campeonato_id BIGINT,
-    piloto_id BIGINT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    campeonato_id INT,
+    piloto_id INT,
     puntos INT DEFAULT 0,
     FOREIGN KEY (campeonato_id) REFERENCES campeonato(id),
     FOREIGN KEY (piloto_id) REFERENCES piloto(id)
@@ -62,9 +64,9 @@ CREATE TABLE clasificacionCampeonato (
 
 -- Tabla clasificacionRally
 CREATE TABLE clasificacionRally (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    rally_id BIGINT,
-    piloto_id BIGINT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    rally_id INT,
+    piloto_id INT,
     posicion_final INT,
     FOREIGN KEY (rally_id) REFERENCES rally(id),
     FOREIGN KEY (piloto_id) REFERENCES piloto(id)
@@ -98,10 +100,10 @@ DELIMITER $$
 CREATE PROCEDURE actualizar_clasificacion()
 BEGIN
     DECLARE done INT DEFAULT 0;
-    DECLARE r_piloto_id BIGINT;
-    DECLARE r_rally_id BIGINT;
+    DECLARE r_piloto_id INT;
+    DECLARE r_rally_id INT;
     DECLARE r_posicion_final INT;
-    DECLARE r_copiloto_id BIGINT;
+    DECLARE r_copiloto_id INT;
     DECLARE cur CURSOR FOR
         SELECT piloto_id, copiloto_id, rally_id, posicion_final FROM participacion;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
@@ -117,11 +119,11 @@ BEGIN
         SET @puntos = 0;
         CALL calcular_puntos(r_posicion_final, @puntos);
 
-        UPDATE clasificacion
+        UPDATE clasificacionCampeonato
         SET puntos = puntos + @puntos
         WHERE piloto_id = r_piloto_id;
 
-        UPDATE clasificacion
+        UPDATE clasificacionCampeonato
         SET puntos = puntos + @puntos
         WHERE piloto_id = r_copiloto_id;
 
@@ -131,3 +133,5 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+use rallys
