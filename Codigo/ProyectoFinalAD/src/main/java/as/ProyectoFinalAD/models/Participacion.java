@@ -10,9 +10,11 @@ public class Participacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "posicion_final")
     private int posicionFinal;
-    @Column(name = "posicion_final")
+
+    @Column(name = "tiempo_total")
     private String tiempoTotal;
 
     @ManyToOne

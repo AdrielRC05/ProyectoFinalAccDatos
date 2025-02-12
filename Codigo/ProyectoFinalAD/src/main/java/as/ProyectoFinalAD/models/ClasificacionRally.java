@@ -11,6 +11,9 @@ public class ClasificacionRally {
     @Column(name = "posicion_final")
     private int posicionFinal;
 
+    @Column(name = "tiempo_total")
+    private int tiempoTotal;
+
     @ManyToOne
     @JoinColumn(name = "rally_id")
     private Rally rally;
@@ -52,5 +55,13 @@ public class ClasificacionRally {
 
     public void setPiloto(Piloto piloto) {
         this.piloto = piloto;
+    }
+
+    public int getTiempoTotal() {
+        return tiempoTotal;
+    }
+
+    public void setTiempoTotal(int tiempoTotal) {
+        this.tiempoTotal = tiempoTotal;
     }
 }
