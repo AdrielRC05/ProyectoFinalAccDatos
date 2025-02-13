@@ -72,6 +72,7 @@ CREATE TABLE clasificacionRally (
     FOREIGN KEY (piloto_id) REFERENCES piloto(id)
 );
 
+
 -- Función para calcular puntos
 DELIMITER $$
 

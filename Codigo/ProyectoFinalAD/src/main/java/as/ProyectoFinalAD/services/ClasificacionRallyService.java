@@ -28,6 +28,10 @@ public class ClasificacionRallyService {
         return clasificacionRallyRepository.findByPilotoId(pilotoId);
     }
 
+    public ClasificacionRally obtenerPorPilotoIdYRallyId(Integer pilotoId, Integer rallyId) {
+        return clasificacionRallyRepository.findByPilotoIdAndRallyId(pilotoId, rallyId);
+    }
+
     public ClasificacionRally guardar(ClasificacionRally clasificacion) {
         return clasificacionRallyRepository.save(clasificacion);
     }

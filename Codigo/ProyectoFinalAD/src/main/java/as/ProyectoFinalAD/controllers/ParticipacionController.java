@@ -5,6 +5,7 @@ import as.ProyectoFinalAD.services.ParticipacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -14,24 +15,27 @@ public class ParticipacionController {
     private ParticipacionService participacionService;
 
     @GetMapping
-    public List<Participacion> obtenerTodos() {
-        return participacionService.obtenerTodos();
+    public List<Participacion> obtenerTodos(@RequestParam(required = false) Integer rallyId, @RequestParam(required = false) Integer pilotoId, @RequestParam(required = false) Integer copilotoId) {
+
+        if (rallyId != null && pilotoId != null && copilotoId != null) {
+            return participacionService.obtenerPorRallyIdYPilotoIdYCopilotoId(rallyId, pilotoId, copilotoId);
+        } else if (rallyId != null && pilotoId != null) {
+            return participacionService.obtenerPorRallyIdYPilotoId(pilotoId, rallyId);
+        } else if (rallyId != null && copilotoId != null) {
+            return participacionService.obtenerPorRallyIdYCopilotoId(copilotoId, rallyId);
+        } else if (pilotoId != null && copilotoId != null) {
+            return participacionService.obtenerPilotoIdYCopilotoId(copilotoId, pilotoId);
+        } else if (rallyId != null) {
+            return participacionService.obtenerPorRallyId(rallyId);
+        } else if (pilotoId != null) {
+            return participacionService.obtenerPorPilotoId(pilotoId);
+        } else if (copilotoId != null) {
+            return participacionService.obtenerPorCopilotoId(copilotoId);
+        } else {
+            return participacionService.obtenerTodos();
+        }
     }
 
-    @GetMapping("/rally/{rallyId}")
-    public List<Participacion> obtenerPorRallyId(@PathVariable Integer rallyId) {
-        return participacionService.obtenerPorRallyId(rallyId);
-    }
-
-    @GetMapping("/piloto/{pilotoId}")
-    public List<Participacion> obtenerPorPilotoId(@PathVariable Integer pilotoId) {
-        return participacionService.obtenerPorPilotoId(pilotoId);
-    }
-
-    @GetMapping("/copiloto/{copilotoId}")
-    public List<Participacion> obtenerPorCopilotoId(@PathVariable Integer copilotoId) {
-        return participacionService.obtenerPorCopilotoId(copilotoId);
-    }
 
     @GetMapping("/{id}")
     public Participacion obtenerPorId(@PathVariable Integer id) {

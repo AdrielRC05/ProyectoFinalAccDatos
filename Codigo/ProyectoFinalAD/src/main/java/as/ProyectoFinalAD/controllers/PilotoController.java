@@ -5,6 +5,7 @@ import as.ProyectoFinalAD.services.PilotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -14,18 +15,17 @@ public class PilotoController {
     private PilotoService pilotoService;
 
     @GetMapping
-    public List<Piloto> obtenerTodos() {
-        return pilotoService.obtenerTodos();
-    }
+    public List<Piloto> obtenerTodos(@RequestParam(required = false) String nombre, @RequestParam(required = false) Integer id) {
 
-    @GetMapping("/buscar")
-    public List<Piloto> obtenerPorNombre(@RequestParam String nombre) {
-        return pilotoService.obtenerPorNombre(nombre);
-    }
-
-    @GetMapping("/{id}")
-    public Piloto obtenerPorId(@PathVariable Integer id) {
-        return pilotoService.obtenerPorId(id);
+        if (nombre != null && id != null) {
+            return pilotoService.obtenerPorNombreYId(nombre, id);
+        } else if (nombre != null) {
+            return pilotoService.obtenerPorNombre(nombre);
+        } else if (id != null) {
+            return Collections.singletonList(pilotoService.obtenerPorId(id));
+        } else {
+            return pilotoService.obtenerTodos();
+        }
     }
 
     @PostMapping

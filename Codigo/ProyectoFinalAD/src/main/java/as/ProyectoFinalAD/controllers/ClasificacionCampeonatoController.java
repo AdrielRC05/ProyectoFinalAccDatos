@@ -5,27 +5,26 @@ import as.ProyectoFinalAD.services.ClasificacionCampeonatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clasificacionCampeonatos")
+@RequestMapping("/clasificacion_campeonatos")
 public class ClasificacionCampeonatoController {
     @Autowired
     private ClasificacionCampeonatoService clasificacionCampeonatoService;
 
     @GetMapping
-    public List<ClasificacionCampeonato> obtenerTodos() {
-        return clasificacionCampeonatoService.obtenerTodos();
-    }
-
-    @GetMapping("/campeonato/{campeonatoId}")
-    public List<ClasificacionCampeonato> obtenerPorCampeonatoId(@PathVariable Integer campeonatoId) {
-        return clasificacionCampeonatoService.obtenerPorCampeonatoId(campeonatoId);
-    }
-
-    @GetMapping("/piloto/{pilotoId}")
-    public List<ClasificacionCampeonato> obtenerPorPilotoId(@PathVariable Integer pilotoId) {
-        return clasificacionCampeonatoService.obtenerPorPilotoId(pilotoId);
+    public List<ClasificacionCampeonato> obtenerTodos(@RequestParam(required = false) Integer campeonatoId, @RequestParam(required = false) Integer pilotoId) {
+        if (campeonatoId != null && pilotoId != null) {
+            return clasificacionCampeonatoService.obtenerPorPilotoYCampeonato(campeonatoId, pilotoId);
+        } else if (campeonatoId != null) {
+            return clasificacionCampeonatoService.obtenerPorCampeonatoId(campeonatoId);
+        } else if (pilotoId != null) {
+            return clasificacionCampeonatoService.obtenerPorPilotoId(pilotoId);
+        } else {
+            return clasificacionCampeonatoService.obtenerTodos();
+        }
     }
 
     @GetMapping("/{id}")

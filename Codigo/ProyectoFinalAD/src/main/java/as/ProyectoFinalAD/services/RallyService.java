@@ -24,6 +24,10 @@ public class RallyService {
         return rallyRepository.findByNombreContains(nombre);
     }
 
+    public List<Rally> obtenerPorCampeonatoId(Integer campeonatoId) {
+        return rallyRepository.findByCampeonatoId(campeonatoId);
+    }
+
     public Rally guardar(Rally rally) {
         return rallyRepository.save(rally);
     }

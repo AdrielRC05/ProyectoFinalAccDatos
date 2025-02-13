@@ -3,7 +3,7 @@ package as.ProyectoFinalAD.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "clasificacionCampeonato")
+@Table(name = "clasificacion_campeonato")
 public class ClasificacionCampeonato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

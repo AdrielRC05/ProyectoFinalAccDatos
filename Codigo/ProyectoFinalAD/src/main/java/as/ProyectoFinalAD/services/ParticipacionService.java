@@ -32,6 +32,22 @@ public class ParticipacionService {
         return participacionRepository.findByCopilotoId(copilotoId);
     }
 
+    public List<Participacion> obtenerPilotoIdYCopilotoId(Integer copilotoId, Integer pilotoId) {
+        return participacionRepository.findByPilotoIdAndCopilotoId(copilotoId, pilotoId);
+    }
+
+    public List<Participacion> obtenerPorRallyIdYPilotoId(Integer pilotoId, Integer rallyId) {
+        return participacionRepository.findByRallyIdAndPilotoId(pilotoId, rallyId);
+    }
+
+    public List<Participacion> obtenerPorRallyIdYCopilotoId(Integer copilotoId, Integer rallyId) {
+        return participacionRepository.findByRallyIdAndCopilotoId(copilotoId, rallyId);
+    }
+
+    public List<Participacion> obtenerPorRallyIdYPilotoIdYCopilotoId(Integer copilotoId, Integer pilotoId, Integer rallyId) {
+        return participacionRepository.findByRallyIdAndPilotoIdAndCopilotoId(copilotoId, pilotoId, rallyId);
+    }
+
     public Participacion guardar(Participacion participacion) {
         return participacionRepository.save(participacion);
     }

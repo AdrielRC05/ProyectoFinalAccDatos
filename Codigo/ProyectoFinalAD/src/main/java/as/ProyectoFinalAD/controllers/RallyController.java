@@ -5,27 +5,30 @@ import as.ProyectoFinalAD.services.RallyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rallies")
+@RequestMapping("/rallys")
 public class RallyController {
     @Autowired
     private RallyService rallyService;
 
     @GetMapping
-    public List<Rally> obtenerTodos() {
-        return rallyService.obtenerTodos();
+    public List<Rally> obtenerTodos(@RequestParam(required = false) Integer id, @RequestParam(required = false) String nombre) {
+
+        if (id == null && nombre == null) {
+            return rallyService.obtenerTodos();
+        } else if (id != null) {
+            return Collections.singletonList(rallyService.obtenerPorId(id));
+        } else{
+            return rallyService.obtenerPorNombre(nombre);
+        }
     }
 
-    @GetMapping("/buscar")
-    public List<Rally> obtenerPorNombre(@RequestParam String nombre) {
-        return rallyService.obtenerPorNombre(nombre);
-    }
-
-    @GetMapping("/{id}")
-    public Rally obtenerPorId(@PathVariable Integer id) {
-        return rallyService.obtenerPorId(id);
+    @GetMapping("/campeonato/{campeonatoId}")
+    public List<Rally> obtenerRallysDeCampeonato(Integer campeonatoId){
+        return rallyService.obtenerPorCampeonatoId(campeonatoId);
     }
 
     @PostMapping

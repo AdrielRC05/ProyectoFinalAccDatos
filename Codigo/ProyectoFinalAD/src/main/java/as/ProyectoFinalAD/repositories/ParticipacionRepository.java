@@ -11,5 +11,9 @@ public interface ParticipacionRepository extends JpaRepository<Participacion, In
     List<Participacion> findByRallyId(Integer rallyId);
     List<Participacion> findByPilotoId(Integer pilotoId);
     List<Participacion> findByCopilotoId(Integer copilotoId);
+    List<Participacion> findByRallyIdAndPilotoIdAndCopilotoId(Integer rallyId, Integer pilotoId, Integer copilotoId);
+    List<Participacion> findByPilotoIdAndCopilotoId(Integer pilotoId, Integer copilotoId);
+    List<Participacion> findByRallyIdAndCopilotoId(Integer rallyId, Integer copilotoId);
+    List<Participacion> findByRallyIdAndPilotoId(Integer rallyId, Integer pilotoId);
 }
 

@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface PilotoRepository extends JpaRepository<Piloto, Integer> {
     List<Piloto> findByNombreContains(String nombre);
+    Piloto findByNombreAndId(String nombre, Integer id);
 }
 

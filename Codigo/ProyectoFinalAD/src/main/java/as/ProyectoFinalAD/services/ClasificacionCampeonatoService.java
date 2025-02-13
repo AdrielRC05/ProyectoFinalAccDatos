@@ -28,6 +28,10 @@ public class ClasificacionCampeonatoService {
         return clasificacionCampeonatoRepository.findByPilotoId(pilotoId);
     }
 
+    public List<ClasificacionCampeonato> obtenerPorPilotoYCampeonato(Integer pilotoId, Integer campeonatoId) {
+        return clasificacionCampeonatoRepository.findByCampeonatoIdAndPilotoId(campeonatoId, pilotoId);
+    }
+
     public ClasificacionCampeonato guardar(ClasificacionCampeonato clasificacion) {
         return clasificacionCampeonatoRepository.save(clasificacion);
     }

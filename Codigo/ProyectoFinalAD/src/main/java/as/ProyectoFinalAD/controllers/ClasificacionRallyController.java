@@ -5,27 +5,26 @@ import as.ProyectoFinalAD.services.ClasificacionRallyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clasificacionRallies")
+@RequestMapping("/clasificacion_rallys")
 public class ClasificacionRallyController {
     @Autowired
     private ClasificacionRallyService clasificacionRallyService;
 
     @GetMapping
-    public List<ClasificacionRally> obtenerTodos() {
-        return clasificacionRallyService.obtenerTodos();
-    }
-
-    @GetMapping("/rally/{rallyId}")
-    public List<ClasificacionRally> obtenerPorRallyId(@PathVariable Integer rallyId) {
-        return clasificacionRallyService.obtenerPorRallyId(rallyId);
-    }
-
-    @GetMapping("/piloto/{pilotoId}")
-    public List<ClasificacionRally> obtenerPorPilotoId(@PathVariable Integer pilotoId) {
-        return clasificacionRallyService.obtenerPorPilotoId(pilotoId);
+    public List<ClasificacionRally> obtenerTodos(@RequestParam(required = false) Integer rallyId, @RequestParam(required = false) Integer pilotoId) {
+        if (rallyId!=null && pilotoId!=null){
+            return Collections.singletonList(clasificacionRallyService.obtenerPorPilotoIdYRallyId(rallyId, pilotoId));
+        } else if (rallyId!=null) {
+            return clasificacionRallyService.obtenerPorRallyId(rallyId);
+        } else if (pilotoId!=null) {
+            return clasificacionRallyService.obtenerPorPilotoId(pilotoId);
+        } else {
+            return clasificacionRallyService.obtenerTodos();
+        }
     }
 
     @GetMapping("/{id}")

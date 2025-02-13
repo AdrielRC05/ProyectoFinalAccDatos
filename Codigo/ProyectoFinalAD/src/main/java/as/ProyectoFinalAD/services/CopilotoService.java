@@ -24,6 +24,10 @@ public class CopilotoService {
         return copilotoRepository.findByNombreContains(nombre);
     }
 
+    public Copiloto obtenerPorNombreYId(String nombre, Integer id) {
+        return copilotoRepository.findByNombreAndId(nombre, id);
+    }
+
     public Copiloto guardar(Copiloto copiloto) {
         return copilotoRepository.save(copiloto);
     }

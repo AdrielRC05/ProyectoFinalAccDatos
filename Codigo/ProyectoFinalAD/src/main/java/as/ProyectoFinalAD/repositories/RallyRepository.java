@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface RallyRepository extends JpaRepository<Rally, Integer> {
     List<Rally> findByNombreContains(String nombre);
+    List<Rally> findByCampeonatoId(Integer campeonatoId);
 }
 

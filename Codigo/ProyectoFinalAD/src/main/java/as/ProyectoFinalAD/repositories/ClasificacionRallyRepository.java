@@ -10,5 +10,6 @@ import java.util.List;
 public interface ClasificacionRallyRepository extends JpaRepository<ClasificacionRally, Integer> {
     List<ClasificacionRally> findByRallyId(Integer rallyId);
     List<ClasificacionRally> findByPilotoId(Integer pilotoId);
+    ClasificacionRally findByPilotoIdAndRallyId(Integer pilotoId, Integer rallyId);
 }
 
