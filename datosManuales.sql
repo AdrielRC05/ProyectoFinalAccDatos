@@ -1001,136 +1001,313 @@ VALUES ('36 Rally de Japón', 'Nagoya, Japón', '2025-11-12', 26);
 INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
 VALUES ('44 Rally de Australia', 'Coffs Harbour, Australia', '2025-12-06', 26);
 
-
-
+/********************************************************************************************/
 
 /********************************************************************************************/
 
+-- Insertar Pilotos
+INSERT INTO piloto (nombre, edad, nacionalidad, coche, titulos) VALUES
+('Sébastien Loeb', 50, 'Francia', 'Citroën C4 WRC', 9),
+('Colin McRae', 39, 'Reino Unido', 'Subaru Impreza WRC', 1),
+('Richard Burns', 34, 'Reino Unido', 'Subaru Impreza WRC', 1),
+('Petter Solberg', 49, 'Noruega', 'Subaru Impreza WRC', 1),
+('Carlos Sainz', 61, 'España', 'Toyota Celica GT-Four', 2),
+('Marcus Grönholm', 56, 'Finlandia', 'Peugeot 307 WRC', 2),
+('Mikko Hirvonen', 44, 'Finlandia', 'Ford Focus WRC', 0),
+('Jari-Matti Latvala', 38, 'Finlandia', 'Toyota Yaris WRC', 0),
+('Dani Sordo', 41, 'España', 'Hyundai i20 WRC', 0),
+('Ken Block', 55, 'EE.UU.', 'Ford Fiesta WRC', 0),
+('Andreas Mikkelsen', 34, 'Noruega', 'Hyundai i20 WRC', 0),
+('Thierry Neuville', 36, 'Bélgica', 'Hyundai i20 N WRC', 0),
+('Ott Tänak', 36, 'Estonia', 'M-Sport Ford Puma WRC', 1),
+('Elfyn Evans', 35, 'Reino Unido', 'Toyota Yaris WRC', 0),
+('Kalle Rovanperä', 24, 'Finlandia', 'Toyota Yaris WRC', 3),
+('Craig Breen', 33, 'Irlanda', 'Hyundai i20 N WRC', 0),
+('Gus Greensmith', 26, 'Reino Unido', 'M-Sport Ford Puma WRC', 0),
+('Adrien Fourmaux', 28, 'Francia', 'M-Sport Ford Puma WRC', 0),
+('Jari Ketomaa', 42, 'Finlandia', 'Ford Fiesta RS WRC', 0),
+('Bryan Bouffier', 43, 'Francia', 'Ford Fiesta RS WRC', 0),
+('Martin Prokop', 39, 'República Checa', 'Ford Fiesta RS WRC', 0),
+('Eyvind Brynildsen', 33, 'Noruega', 'Ford Fiesta WRC', 0),
+('Valeriy Gorban', 42, 'Ucrania', 'Ford Fiesta WRC', 0),
+('Lorenzo Bertelli', 34, 'Italia', 'Ford Fiesta WRC', 0),
+('Mads Østberg', 37, 'Noruega', 'Citroën DS3 WRC', 0),
+('Hannu Mikkola', 78, 'Finlandia', 'Audi Quattro', 1), -- Fallecido en 2021 a los 78 años
+('Sébastien Ogier', 39, 'Francia', 'Toyota Yaris WRC', 8),
+('Janne Tuohino', 48, 'Finlandia', 'Ford Focus WRC', 0),
+('Xavier Pons', 47, 'España', 'Ford Focus WRC', 0),
+('Gilles Panizzi', 55, 'Francia', 'Peugeot 206 WRC', 0),
+('John Buffum', 70, 'EE.UU.', 'Audi Quattro', 0),
+('Henning Solberg', 47, 'Noruega', 'Ford Fiesta RS WRC', 0),
+('Nasser Al-Attiyah', 54, 'Catar', 'Toyota Hilux', 0),
+('David Higgins', 46, 'Reino Unido', 'Subaru Impreza WRX STI', 0),
+('Mikołaj Mikołajczyk', 32, 'Polonia', 'Ford Fiesta WRC', 0);
 
+-- Insertar Copilotos
+INSERT INTO copiloto (nombre, edad, nacionalidad, coche, titulos) VALUES
+('Daniel Elena', 48, 'Mónaco', 'Citroën C4 WRC', 9),
+('Robert Reid', 53, 'Reino Unido', 'Subaru Impreza WRC', 1),
+('Nicky Grist', 59, 'Reino Unido', 'Subaru Impreza WRC', 0),
+('Phil Mills', 58, 'Reino Unido', 'Subaru Impreza WRC', 1),
+('Luis Moya', 60, 'España', 'Toyota Celica GT-Four', 2),
+('Timo Rautiainen', 52, 'Finlandia', 'Peugeot 307 WRC', 2),
+('Mikka Anttila', 48, 'Finlandia', 'Ford Focus WRC', 0),
+('Miikka Röhr', 46, 'Finlandia', 'Toyota Yaris WRC', 0),
+('Julien Ingrassia', 45, 'Francia', 'Toyota Yaris WRC', 8),
+('Jonne Halttunen', 35, 'Finlandia', 'Toyota Yaris WRC', 1),
+('Paul Nagle', 42, 'Irlanda', 'Hyundai i20 N WRC', 0),
+('Martin Järveoja', 34, 'Estonia', 'M-Sport Ford Puma WRC', 1),
+('Scott Martin', 38, 'Reino Unido', 'Toyota Yaris WRC', 0),
+('Nicolas Gilsoul', 40, 'Bélgica', 'Hyundai i20 N WRC', 0),
+('Sebastian Marshall', 30, 'Reino Unido', 'M-Sport Ford Puma WRC', 0),
+('Kirsten Zetterman', 38, 'Suecia', 'Toyota Yaris WRC', 0),
+('Emma Falcón', 32, 'España', 'Skoda Fabia R5', 0),
+('Malcolm Wilson', 63, 'Reino Unido', 'Ford Fiesta RS WRC', 0),
+('Gus Greensmith', 26, 'Reino Unido', 'M-Sport Ford Puma WRC', 0),
+('Arne Hertz', 69, 'Suecia', 'Volvo 240', 0),
+('Elena Moser', 40, 'Francia', 'Peugeot 206 WRC', 0),
+('Vincent Landais', 33, 'Francia', 'Toyota Yaris WRC', 0),
+('Sebastien Chardonnet', 37, 'Francia', 'Citroën DS3 WRC', 0),
+('Anders Jäger', 45, 'Noruega', 'Ford Fiesta WRC', 0),
+('Pablo Moreno', 36, 'España', 'Hyundai i20 N WRC', 0),
+('Laia Sanz', 39, 'España', 'KTM', 0),
+('Bruno Cori', 34, 'Italia', 'Skoda Fabia R5', 0),
+('Pierre-Louis Loubet', 25, 'Francia', 'Ford Fiesta Rally2', 0),
+('Sophie Louvel', 39, 'Francia', 'Peugeot 208 R5', 0),
+('José Luis García', 43, 'España', 'Skoda Fabia R5', 0),
+('Darryn Pritchard', 38, 'Reino Unido', 'Ford Fiesta R5', 0),
+('Carla Cordero', 31, 'España', 'Peugeot 208 R5', 0),
+('Piera Lavigne', 37, 'Argentina', 'Renault Clio R3T', 0),
+('Jonas Andersson', 40, 'Suecia', 'Ford Fiesta RS WRC', 0),
+('Maja Zawisza', 35, 'Polonia', 'Skoda Fabia R5', 0);
 
+/**************************************************************************************/
 
--- Insertar campeonato S-CER
-INSERT INTO campeonato (nombre, localizacion)
-VALUES ('S-CER 2025', 'España');
+INSERT INTO participacion (rally_id, piloto_id, copiloto_id, posicion_final, tiempo_total) VALUES
+(1, 1, 2, 1, '02:05:30'),
+(1, 3, 4, 2, '02:10:20'),
+(1, 5, 6, 3, '02:15:10'),
+(1, 7, 8, 4, '02:20:00'),
+(1, 9, 10, 5, '02:25:50'),
+(1, 11, 12, 6, '02:30:40'),
+(1, 13, 14, 7, '02:35:30'),
+(1, 15, 16, 8, '02:40:20'),
+(1, 17, 18, 9, '02:45:10'),
+(1, 19, 20, 10, '02:50:00'),
+(1, 21, 22, 11, '02:54:30'),
+(1, 23, 24, 12, '02:59:20'),
+(1, 25, 26, 13, '03:04:10'),
+(1, 27, 28, 14, '03:09:00'),
+(1, 29, 30, 15, '03:13:40'),
+(2, 1, 3, 1, '02:08:00'),
+(2, 4, 5, 2, '02:12:45'),
+(2, 6, 7, 3, '02:17:35'),
+(2, 8, 9, 4, '02:22:15'),
+(2, 10, 11, 5, '02:27:00'),
+(2, 12, 13, 6, '02:31:40'),
+(2, 14, 15, 7, '02:36:15'),
+(2, 16, 17, 8, '02:41:10'),
+(2, 18, 19, 9, '02:46:00'),
+(2, 20, 21, 10, '02:50:50'),
+(2, 22, 23, 11, '02:55:30'),
+(2, 24, 25, 12, '03:00:20'),
+(2, 26, 27, 13, '03:05:10'),
+(2, 28, 29, 14, '03:10:00'),
+(2, 30, 31, 15, '03:14:30'),
+(3, 2, 3, 1, '02:10:15'),
+(3, 4, 5, 2, '02:14:40'),
+(3, 6, 7, 3, '02:19:25'),
+(3, 8, 9, 4, '02:24:05'),
+(3, 10, 11, 5, '02:28:50'),
+(3, 12, 13, 6, '02:33:40'),
+(3, 14, 15, 7, '02:38:20'),
+(3, 16, 17, 8, '02:43:10'),
+(3, 18, 19, 9, '02:48:00'),
+(3, 20, 21, 10, '02:52:50'),
+(3, 22, 23, 11, '02:57:30'),
+(3, 24, 25, 12, '03:02:15'),
+(3, 26, 27, 13, '03:07:00'),
+(3, 28, 29, 14, '03:11:40'),
+(3, 30, 31, 15, '03:16:20'),
+(4, 1, 4, 1, '02:12:30'),
+(4, 2, 5, 2, '02:17:00'),
+(4, 6, 7, 3, '02:22:10'),
+(4, 8, 9, 4, '02:27:50'),
+(4, 10, 11, 5, '02:32:40'),
+(4, 12, 13, 6, '02:37:30'),
+(4, 14, 15, 7, '02:42:20'),
+(4, 16, 17, 8, '02:47:10'),
+(4, 18, 19, 9, '02:52:00'),
+(4, 20, 21, 10, '02:56:50'),
+(4, 22, 23, 11, '03:01:40'),
+(4, 24, 25, 12, '03:06:30'),
+(4, 26, 27, 13, '03:11:20'),
+(4, 28, 29, 14, '03:16:10'),
+(4, 30, 31, 15, '03:21:00'),
+(5, 1, 2, 1, '02:15:20'),
+(5, 3, 4, 2, '02:19:55'),
+(5, 5, 6, 3, '02:24:35'),
+(5, 7, 8, 4, '02:29:10'),
+(5, 9, 10, 5, '02:34:00'),
+(5, 11, 12, 6, '02:38:45'),
+(5, 13, 14, 7, '02:43:25'),
+(5, 15, 16, 8, '02:48:10'),
+(5, 17, 18, 9, '02:53:00'),
+(5, 19, 20, 10, '02:57:40'),
+(5, 21, 22, 11, '03:02:20'),
+(5, 23, 24, 12, '03:07:05'),
+(5, 25, 26, 13, '03:11:50'),
+(5, 27, 28, 14, '03:16:30'),
+(5, 29, 30, 15, '03:21:10'),
+(6, 1, 3, 1, '02:18:00'),
+(6, 4, 5, 2, '02:22:30'),
+(6, 6, 7, 3, '02:27:10'),
+(6, 8, 9, 4, '02:31:50'),
+(6, 10, 11, 5, '02:36:30'),
+(6, 12, 13, 6, '02:41:10'),
+(6, 14, 15, 7, '02:45:50'),
+(6, 16, 17, 8, '02:50:30'),
+(6, 18, 19, 9, '02:55:10'),
+(6, 20, 21, 10, '03:00:00'),
+(6, 22, 23, 11, '03:04:40'),
+(6, 24, 25, 12, '03:09:20'),
+(6, 26, 27, 13, '03:14:00'),
+(6, 28, 29, 14, '03:18:40'),
+(6, 30, 31, 15, '03:23:20'),
+(101, 1, 1, 1, '02:15:30'),
+(101, 2, 2, 2, '02:20:10'),
+(101, 3, 3, 3, '02:25:05'),
+(101, 4, 4, 4, '02:30:20'),
+(101, 5, 5, 5, '02:35:00'),
+(101, 6, 6, 6, '02:40:10'),
+(101, 7, 7, 7, '02:45:15'),
+(101, 8, 8, 8, '02:50:30'),
+(101, 9, 9, 9, '02:55:10'),
+(101, 10, 10, 10, '03:00:25'),
+(101, 11, 11, 11, '03:05:15'),
+(101, 12, 12, 12, '03:10:30'),
+(101, 13, 13, 13, '03:15:05'),
+(101, 14, 14, 14, '03:20:40'),
+(101, 15, 15, 15, '03:25:25'),
+(102, 1, 1, 1, '02:16:00'),
+(102, 2, 2, 2, '02:19:45'),
+(102, 3, 3, 3, '02:23:30'),
+(102, 4, 4, 4, '02:28:15'),
+(102, 5, 5, 5, '02:32:50'),
+(102, 6, 6, 6, '02:38:25'),
+(102, 7, 7, 7, '02:42:10'),
+(102, 8, 8, 8, '02:47:35'),
+(102, 9, 9, 9, '02:52:45'),
+(102, 10, 10, 10, '02:58:15'),
+(102, 11, 11, 11, '03:03:20'),
+(102, 12, 12, 12, '03:08:40'),
+(102, 13, 13, 13, '03:13:50'),
+(102, 14, 14, 14, '03:19:05'),
+(102, 15, 15, 15, '03:24:15'),
+(103, 1, 1, 1, '02:12:35'),
+(103, 2, 2, 2, '02:17:50'),
+(103, 3, 3, 3, '02:22:00'),
+(103, 4, 4, 4, '02:26:25'),
+(103, 5, 5, 5, '02:30:15'),
+(103, 6, 6, 6, '02:34:40'),
+(103, 7, 7, 7, '02:39:00'),
+(103, 8, 8, 8, '02:43:20'),
+(103, 9, 9, 9, '02:48:10'),
+(103, 10, 10, 10, '02:52:50'),
+(103, 11, 11, 11, '02:57:30'),
+(103, 12, 12, 12, '03:02:00'),
+(103, 13, 13, 13, '03:06:45'),
+(103, 14, 14, 14, '03:11:10'),
+(103, 15, 15, 15, '03:16:20'),
+(104, 1, 1, 1, '02:10:05'),
+(104, 2, 2, 2, '02:14:30'),
+(104, 3, 3, 3, '02:19:20'),
+(104, 4, 4, 4, '02:23:45'),
+(104, 5, 5, 5, '02:28:30'),
+(104, 6, 6, 6, '02:33:00'),
+(104, 7, 7, 7, '02:37:20'),
+(104, 8, 8, 8, '02:42:10'),
+(104, 9, 9, 9, '02:47:05'),
+(104, 10, 10, 10, '02:51:40'),
+(104, 11, 11, 11, '02:56:00'),
+(104, 12, 12, 12, '03:00:30'),
+(104, 13, 13, 13, '03:05:10'),
+(104, 14, 14, 14, '03:09:40'),
+(104, 15, 15, 15, '03:14:20'),
+(105, 1, 1, 1, '02:08:00'),
+(105, 2, 2, 2, '02:12:30'),
+(105, 3, 3, 3, '02:17:45'),
+(105, 4, 4, 4, '02:22:30'),
+(105, 5, 5, 5, '02:27:00'),
+(105, 6, 6, 6, '02:31:45'),
+(105, 7, 7, 7, '02:36:20'),
+(105, 8, 8, 8, '02:41:05'),
+(105, 9, 9, 9, '02:46:15'),
+(105, 10, 10, 10, '02:50:25'),
+(105, 11, 11, 11, '02:54:35'),
+(105, 12, 12, 12, '02:59:00'),
+(105, 13, 13, 13, '03:03:20'),
+(105, 14, 14, 14, '03:07:40'),
+(105, 15, 15, 15, '03:12:00'),
+(106, 1, 1, 1, '02:18:30'),
+(106, 2, 2, 2, '02:22:00'),
+(106, 3, 3, 3, '02:26:15'),
+(106, 4, 4, 4, '02:30:40'),
+(106, 5, 5, 5, '02:35:30'),
+(106, 6, 6, 6, '02:40:15'),
+(106, 7, 7, 7, '02:44:25'),
+(106, 8, 8, 8, '02:49:00'),
+(106, 9, 9, 9, '02:54:35'),
+(106, 10, 10, 10, '02:59:45'),
+(106, 11, 11, 11, '03:04:30'),
+(106, 12, 12, 12, '03:09:00'),
+(106, 13, 13, 13, '03:13:40'),
+(106, 14, 14, 14, '03:18:05'),
+(106, 15, 15, 15, '03:22:30'),
+(107, 1, 1, 1, '02:11:00'),
+(107, 2, 2, 2, '02:14:50'),
+(107, 3, 3, 3, '02:19:15'),
+(107, 4, 4, 4, '02:23:35'),
+(107, 5, 5, 5, '02:28:00'),
+(107, 6, 6, 6, '02:32:30'),
+(107, 7, 7, 7, '02:37:05'),
+(107, 8, 8, 8, '02:41:45'),
+(107, 9, 9, 9, '02:46:25'),
+(107, 10, 10, 10, '02:51:15'),
+(107, 11, 11, 11, '02:55:30'),
+(107, 12, 12, 12, '03:00:50'),
+(107, 13, 13, 13, '03:05:25'),
+(107, 14, 14, 14, '03:10:00'),
+(107, 15, 15, 15, '03:14:30'),
+(108, 1, 1, 1, '02:17:10'),
+(108, 2, 2, 2, '02:21:30'),
+(108, 3, 3, 3, '02:25:40'),
+(108, 4, 4, 4, '02:30:10'),
+(108, 5, 5, 5, '02:34:50'),
+(108, 6, 6, 6, '02:39:30'),
+(108, 7, 7, 7, '02:44:00'),
+(108, 8, 8, 8, '02:48:20'),
+(108, 9, 9, 9, '02:53:10'),
+(108, 10, 10, 10, '02:57:40'),
+(108, 11, 11, 11, '03:02:10'),
+(108, 12, 12, 12, '03:06:40'),
+(108, 13, 13, 13, '03:11:15'),
+(108, 14, 14, 14, '03:15:30'),
+(108, 15, 15, 15, '03:20:00'),
+(109, 1, 1, 1, '02:13:25'),
+(109, 2, 2, 2, '02:16:40'),
+(109, 3, 3, 3, '02:20:30'),
+(109, 4, 4, 4, '02:24:10'),
+(109, 5, 5, 5, '02:28:45'),
+(109, 6, 6, 6, '02:33:20'),
+(109, 7, 7, 7, '02:38:05'),
+(109, 8, 8, 8, '02:42:30'),
+(109, 9, 9, 9, '02:47:00'),
+(109, 10, 10, 10, '02:51:30'),
+(109, 11, 11, 11, '02:55:50'),
+(109, 12, 12, 12, '03:00:10'),
+(109, 13, 13, 13, '03:04:40'),
+(109, 14, 14, 14, '03:09:00'),
+(109, 15, 15, 15, '03:13:30');
 
--- Insertar rallies del S-CER
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Tierras Altas de Lorca', 'Lorca, Murcia', '2025-04-12', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Navarra', 'Pamplona, Navarra', '2025-05-02', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Sierra Morena', 'Córdoba, Andalucía', '2025-05-16', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de la Comunidad de Madrid', 'Madrid, Comunidad de Madrid', '2025-06-06', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally Ciudad de Cervera', 'Cervera, Lleida', '2025-09-05', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally del Alto Turia', 'Alto Turia, Valencia', '2025-04-26', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally del Bierzo', 'Bierzo, León', '2025-07-11', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de la Llana', 'Llana, Asturias', '2025-08-01', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally del Juguete', 'Comunidad Valenciana', '2025-10-03', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de La Nucía', 'La Nucía, Alicante', '2025-11-07', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Xixona', 'Xixona, Alicante', '2025-11-28', 2);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Canarias', 'Gran Canaria, Canarias', '2025-12-05', 2);
-
-
--- Insertar campeonato ERC
-INSERT INTO campeonato (nombre, localizacion)
-VALUES ('ERC 2025', 'Europa');
-
--- Insertar rallies del ERC
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Montecarlo', 'Monte Carlo, Mónaco', '2025-01-22', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Polonia', 'Mikołajki, Polonia', '2025-06-11', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Letonia', 'Jurmala, Letonia', '2025-07-23', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Hungría', 'Nyíregyháza, Hungría', '2025-09-03', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Chipre', 'Limassol, Chipre', '2025-10-08', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de República Checa', 'Zlín, República Checa', '2025-08-14', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Canarias', 'Las Palmas, Canarias', '2025-11-01', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Alemania', 'Trèves, Alemania', '2025-09-19', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Estonia', 'Tartu, Estonia', '2025-06-19', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Finlandia', 'Jyväskylä, Finlandia', '2025-07-09', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Polonia', 'Mikołajki, Polonia', '2025-06-18', 3);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rally de Bulgaria', 'Bansko, Bulgaria', '2025-10-15', 3);
-
-
--- Insertar campeonato Campeonato Gallego de Rallys
-INSERT INTO campeonato (nombre, localizacion)
-VALUES ('Campeonato Gallego de Rallys 2025', 'Galicia, España');
-
--- Insertar rallies del Campeonato Gallego
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye do Albariño', 'Rías Baixas, Galicia', '2025-04-18', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de A Coruña', 'A Coruña, Galicia', '2025-05-23', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de Ourense', 'Ourense, Galicia', '2025-06-13', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de Ferrol', 'Ferrol, Galicia', '2025-08-01', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de San Froilán', 'Lugo, Galicia', '2025-10-09', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de Viveiro', 'Viveiro, Galicia', '2025-05-30', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de Rías Altas', 'A Coruña, Galicia', '2025-07-04', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de la Mariña', 'Ribadeo, Galicia', '2025-06-20', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de Monforte', 'Monforte, Galicia', '2025-09-18', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de O Salnés', 'Sanxenxo, Galicia', '2025-07-24', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de A Mariña Lucense', 'Lugo, Galicia', '2025-08-21', 4);
-
-INSERT INTO rally (nombre, localizacion, fecha_celebracion, campeonato_id)
-VALUES ('Rallye de Lousame', 'Lousame, Galicia', '2025-09-25', 4);
 
