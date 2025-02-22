@@ -19,17 +19,12 @@ MySQL configurado y corriendo en tu máquina o un servicio de base de datos simi
 Instalación
 Clona este repositorio en tu máquina local:
 
-bash
+bash:
 Copiar
-git clone https://github.com/tuusuario/rally-api.git
+https://github.com/AdrielRC05/ProyectoFinalAccDatos.git
 Dirígete a la carpeta del proyecto:
 
-bash
-Copiar
-cd rally-api
-Instala las dependencias con Maven:
-
-bash
+bash:
 Copiar
 mvn clean install
 Configura tu base de datos en el archivo src/main/resources/application.properties:
@@ -60,7 +55,7 @@ clasificacionRally: Almacena la clasificación de los pilotos en cada rally.
 El script de creación de la base de datos y las tablas es el siguiente:
 
 sql
-Copiar
+Copiar:
 -- Crear base de datos y tablas
 DROP DATABASE IF EXISTS rallys;
 CREATE DATABASE rallys;
@@ -68,35 +63,275 @@ USE rallys;
 
 -- Definición de las tablas...
 Endpoints
-La API expone los siguientes endpoints para interactuar con los datos:
+Campeonato
+GET /campeonatos
+Obtiene todos los campeonatos.
 
-Pilotos
-GET /pilotos: Obtiene todos los pilotos.
-POST /pilotos: Crea un nuevo piloto.
-GET /pilotos/{id}: Obtiene detalles de un piloto por su ID.
-PUT /pilotos/{id}: Actualiza la información de un piloto.
-DELETE /pilotos/{id}: Elimina un piloto.
-Copilotos
-GET /copilotos: Obtiene todos los copilotos.
-POST /copilotos: Crea un nuevo copiloto.
-GET /copilotos/{id}: Obtiene detalles de un copiloto por su ID.
-PUT /copilotos/{id}: Actualiza la información de un copiloto.
-DELETE /copilotos/{id}: Elimina un copiloto.
-Rallys
-GET /rallys: Obtiene todos los rallys.
-POST /rallys: Crea un nuevo rally.
-GET /rallys/{id}: Obtiene detalles de un rally por su ID.
-PUT /rallys/{id}: Actualiza la información de un rally.
-DELETE /rallys/{id}: Elimina un rally.
-Participaciones
-GET /participaciones: Obtiene todas las participaciones.
-POST /participaciones: Crea una nueva participación (vincula un piloto y copiloto a un rally).
-GET /participaciones/{id}: Obtiene detalles de una participación.
-PUT /participaciones/{id}: Actualiza la participación (incluye la posición y tiempo).
-DELETE /participaciones/{id}: Elimina una participación.
-Clasificación
-GET /clasificacion/campeonato/{campeonatoId}: Obtiene la clasificación de un campeonato.
-GET /clasificacion/rally/{rallyId}: Obtiene la clasificación de un rally.
+GET /campeonatos?nombre=Mun
+Obtiene campeonatos que coinciden con el nombre "Mun".
+
+Query Params:
+
+nombre: "Mun"
+GET /campeonatos?id=1
+Obtiene un campeonato por su ID.
+
+Query Params:
+
+id: 1
+POST /campeonatos
+Crea un nuevo campeonato.
+
+Body (JSON):
+
+json
+Copiar
+{
+    "nombre": "A",
+    "localizacion": "¿?"
+}
+PUT /campeonatos/11
+Actualiza un campeonato por su ID.
+
+Body (JSON):
+
+json
+Copiar
+{
+    "nombre": "Super Campeonato Español de Rally",
+    "localizacion": "España"
+}
+DELETE /campeonatos/3
+Elimina un campeonato por su ID.
+
+Clasificación Campeonato
+GET /clasificacion_campeonatos
+Obtiene todas las clasificaciones de los campeonatos.
+
+GET /clasificacion_campeonatos/1
+Obtiene una clasificación de campeonato por su ID.
+
+GET /clasificacion_campeonatos?pilotoId=1&campeonatoID=1
+Obtiene la clasificación de un campeonato por el ID del piloto y del campeonato.
+
+Query Params:
+
+pilotoId: 1
+campeonatoID: 1
+GET /clasificacion_campeonatos?campeonatoID=1
+Obtiene la clasificación de un campeonato por el ID del campeonato.
+
+Query Params:
+
+campeonatoID: 1
+GET /clasificacion_campeonatos?pilotoId=1
+Obtiene la clasificación de un piloto en todos los campeonatos.
+
+Query Params:
+
+pilotoId: 1
+POST /clasificacion_campeonatos
+Crea una nueva clasificación de campeonato.
+
+PUT /clasificacion_campeonatos/1
+Actualiza una clasificación de campeonato por su ID.
+
+DELETE /clasificacion_campeonatos/1
+Elimina una clasificación de campeonato por su ID.
+
+Clasificación Rally
+GET /clasificacion_rallys
+Obtiene todas las clasificaciones de los rallys.
+
+GET /clasificacion_rallys/1
+Obtiene la clasificación de un rally por su ID.
+
+GET /clasificacion_rallys?rallyId=1&pilotoId=1
+Obtiene la clasificación de un rally por el ID del rally y del piloto.
+
+Query Params:
+
+rallyId: 1
+pilotoId: 1
+GET /clasificacion_rallys?rallyId=1
+Obtiene la clasificación de un rally por el ID del rally.
+
+Query Params:
+
+rallyId: 1
+GET /clasificacion_rallys?pilotoId=1
+Obtiene la clasificación de un piloto en todos los rallys.
+
+Query Params:
+
+pilotoId: 1
+POST /clasificacion_rallys
+Crea una nueva clasificación de rally.
+
+PUT /clasificacion_rallys/1
+Actualiza una clasificación de rally por su ID.
+
+DELETE /clasificacion_rallys/1
+Elimina una clasificación de rally por su ID.
+
+Copiloto
+GET /copilotos
+Obtiene todos los copilotos.
+
+GET /copilotos?id=1
+Obtiene un copiloto por su ID.
+
+Query Params:
+
+id: 1
+GET /copilotos?nombre=a
+Obtiene copilotos que coinciden con el nombre "a".
+
+Query Params:
+
+nombre: "a"
+GET /copilotos?id=1&nombre=a
+Obtiene un copiloto por su ID y nombre.
+
+Query Params:
+
+id: 1
+nombre: "a"
+POST /copilotos
+Crea un nuevo copiloto.
+
+PUT /copilotos/1
+Actualiza un copiloto por su ID.
+
+DELETE /copilotos/1
+Elimina un copiloto por su ID.
+
+Participación
+GET /participaciones
+Obtiene todas las participaciones.
+
+GET /participaciones/1
+Obtiene una participación por su ID.
+
+GET /participaciones?rallyId=1&pilotoId=1&copilotoId=1
+Obtiene una participación por los ID de rally, piloto y copiloto.
+
+Query Params:
+
+rallyId: 1
+pilotoId: 1
+copilotoId: 1
+GET /participaciones?rallyId=1&pilotoId=1
+Obtiene una participación por el ID de rally y piloto.
+
+Query Params:
+
+rallyId: 1
+pilotoId: 1
+GET /participaciones?rallyId=1&copilotoId=1
+Obtiene una participación por el ID de rally y copiloto.
+
+Query Params:
+
+rallyId: 1
+copilotoId: 1
+GET /participaciones?copilotoId=1&pilotoId=1
+Obtiene una participación por el ID de copiloto y piloto.
+
+Query Params:
+
+copilotoId: 1
+pilotoId: 1
+GET /participaciones?rallyId=1
+Obtiene todas las participaciones de un rally.
+
+Query Params:
+
+rallyId: 1
+GET /participaciones?pilotoId=1
+Obtiene todas las participaciones de un piloto.
+
+Query Params:
+
+pilotoId: 1
+GET /participaciones?copilotoId=1
+Obtiene todas las participaciones de un copiloto.
+
+Query Params:
+
+copilotoId: 1
+POST /participaciones
+Crea una nueva participación.
+
+PUT /participaciones/1
+Actualiza una participación por su ID.
+
+DELETE /participaciones/1
+Elimina una participación por su ID.
+
+Piloto
+GET /pilotos
+Obtiene todos los pilotos.
+
+GET /pilotos?id=1
+Obtiene un piloto por su ID.
+
+Query Params:
+
+id: 1
+GET /pilotos?nombre=a
+Obtiene pilotos que coinciden con el nombre "a".
+
+Query Params:
+
+nombre: "a"
+GET /pilotos?nombre=a&id=1
+Obtiene un piloto por su nombre y ID.
+
+Query Params:
+
+nombre: "a"
+id: 1
+POST /pilotos
+Crea un nuevo piloto.
+
+PUT /pilotos/1
+Actualiza un piloto por su ID.
+
+DELETE /pilotos/1
+Elimina un piloto por su ID.
+
+GET /pilotos/1/rallys
+Obtiene todos los rallys en los que un piloto ha participado.
+
+Rally
+GET /rallys
+Obtiene todos los rallys.
+
+GET /rallys?nombre=a
+Obtiene rallys que coinciden con el nombre "a".
+
+Query Params:
+
+nombre: "a"
+GET /rallys?id=1
+Obtiene un rally por su ID.
+
+Query Params:
+
+id: 1
+GET /rallys/campeonato/1
+Obtiene los rallys de un campeonato específico.
+
+POST /rallys
+Crea un nuevo rally.
+
+PUT /rallys/1
+Actualiza un rally por su ID.
+
+DELETE /rallys/1
+Elimina un rally por su ID.
+
 Cómo Importar la Colección en Postman
 Descarga el archivo de la colección de Postman desde el repositorio o desde un enlace proporcionado.
 Abre Postman y ve a "Importar".
