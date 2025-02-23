@@ -47,11 +47,17 @@ La base de datos se estructura con las siguientes tablas:
 
 campeonato: Almacena información sobre los campeonatos.
 rally: Detalles de los rallys, con una relación a la tabla campeonato.
+
 piloto: Información de los pilotos, con su nombre, edad, coche, etc.
+
 copiloto: Información de los copilotos, similar a la tabla piloto.
+
 participacion: Relaciona a los pilotos y copilotos con un rally específico, junto con su posición final y tiempo total.
+
 clasificacionCampeonato: Almacena los puntos de los pilotos en los campeonatos.
+
 clasificacionRally: Almacena la clasificación de los pilotos en cada rally.
+
 El script de creación de la base de datos y las tablas es el siguiente:
 
 sql
