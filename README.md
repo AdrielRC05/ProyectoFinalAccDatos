@@ -60,18 +60,8 @@ clasificacionRally: Almacena la clasificación de los pilotos en cada rally.
 
 El script de creación de la base de datos y las tablas es el siguiente:
 
-sql
-Copiar:
--- Crear base de datos y tablas
-DROP DATABASE IF EXISTS rallys;
-CREATE DATABASE rallys;
-USE rallys;
-
--- Definición de las tablas...
-Endpoints
-Campeonato
-GET /campeonatos
-Obtiene todos los campeonatos.
+sql:
+Ejecute el script adjunto llamado "scriptBDRally.sql" en MySQL. Para rellenar la base de datos, ejecute el archivo scriptDatosEjemplo.sql en MySQL
 
 GET /campeonatos?nombre=Mun
 Obtiene campeonatos que coinciden con el nombre "Mun".
@@ -338,11 +328,16 @@ Actualiza un rally por su ID.
 DELETE /rallys/1
 Elimina un rally por su ID.
 
-Cómo Importar la Colección en Postman
+Cómo Importar la Colección en Postman?
+
 Descarga el archivo de la colección de Postman desde el repositorio o desde un enlace proporcionado.
+
 Abre Postman y ve a "Importar".
+
 Selecciona el archivo .json de la colección y haz clic en "Importar".
+
 Carpeta documentacion/
+
 En la carpeta documentacion/ encontrarás la documentación técnica en PDF y el modelo EER en formato de imagen que describe las entidades y las relaciones de la base de datos.
 
 Contribuciones
