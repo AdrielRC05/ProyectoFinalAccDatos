@@ -1,6 +1,9 @@
 package as.ProyectoFinalAD.controllers;
 
+import as.ProyectoFinalAD.models.DTOs.PilotoDTO;
+import as.ProyectoFinalAD.models.Participacion;
 import as.ProyectoFinalAD.models.Rally;
+import as.ProyectoFinalAD.repositories.ParticipacionRepository;
 import as.ProyectoFinalAD.services.RallyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -10,14 +13,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/rallys")
 @Tag(name = "Rally Controller", description = "Operaciones CRUD para Rally")
 public class RallyController {
-
     @Autowired
     private RallyService rallyService;
+
+    @Autowired
+    private ParticipacionRepository participacionRepository;
 
     @GetMapping
     @Operation(summary = "Obtener todos los rallies", description = "Obtiene una lista de todos los rallies. Se puede filtrar por id o nombre.")
@@ -32,6 +38,20 @@ public class RallyController {
         } else {
             return rallyService.obtenerPorNombre(nombre);
         }
+    }
+
+    @GetMapping("/{id}/pilotos")
+    public List<PilotoDTO> obtenerPilotosDelRally(@PathVariable("id") int rallyId) {
+        List<Participacion> participaciones = participacionRepository.findByRallyId(rallyId);
+        return participaciones.stream()
+                .map(participacion -> new PilotoDTO(
+                        participacion.getPiloto().getId(),
+                        participacion.getPiloto().getNombre(),
+                        participacion.getPiloto().getEdad(),
+                        participacion.getPiloto().getNacionalidad(),
+                        participacion.getPiloto().getCoche(),
+                        participacion.getPiloto().getTitulos()))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/campeonato/{campeonatoId}")
